@@ -18,7 +18,7 @@ const BlockTable = ({ Block_details }) => {
           <tr key={index}>
             <td>{object.Number}</td>
             <td>{object.Withness}</td>
-            <td>{object.Transactions}</td>
+            <td>{object.Transactions.length}</td>
             <td>{object.Timestamp}</td>
 
             {/* Render more table cells for each property */}

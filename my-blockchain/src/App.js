@@ -2,25 +2,17 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
 import BlockTable from './block_table';
+import TransactionTable from './transaction_table';
 
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
+  //const [Blocktransactions,setBlocktransactions] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
-  
-
-  
   const [flag ,setflag] = useState(false)
-  
-  
-
-
-  
+   
   useEffect(() => {
-
- 
-      const fetchBlockNumber = () => {
-        
+      const fetchBlockNumber = () => {       
         fetch("https://sds1.steemworld.org/blocks_api/getLastIrreversibleBlockNum")
           .then(response => {
             return response.json()
@@ -28,10 +20,9 @@ function App() {
           .then(data => {
             const BlockObject = {
               Number: data.result,
-              Withness: "heavy",
-              Transactions: 10,
-              Timestamp: ""
-              
+              Withness: " ",
+              Transactions: " ",
+              Timestamp: " ",             
             };
             
 
@@ -43,45 +34,56 @@ function App() {
               setBlockdetaildata(data)
               BlockObject.Timestamp =data.result.timestamp
               BlockObject.Withness = data.result.witness
-              BlockObject.Transactions = data.result.transactions.length
+              BlockObject.Transactions = data.result.transactions
 
             })    
             .catch(e => console.error(e));
            
-           
-            
-           
-           
-            
+                 
+          if (BlockNumbers.length >= 20)
+          {
+            const newblcknum = BlockNumbers.slice(0, -1);
+            setBlocknumbers(newblcknum);            
+          }
+
           if (Blockdetails.length >= 20)
           {
-
-            const newblcknum = BlockNumbers.slice(0, -1);
-            setBlocknumbers(newblcknum);
-
             const newblcdetail = Blockdetails.slice(0, -1);
-            setBlockdetails(newblcdetail);
+            setBlockdetails(newblcdetail);           
           }
+
+          // if(Blocktransactions.length >= 20)
+          // {
+          //   let a = 20 - Blocktransactions.length
+          //   console.log(a)
+          //   const newblcktrans = Blocktransactions.slice(0,a)
+          //   setBlocktransactions(newblcktrans)
+          // }
+
+
+          
             
-          if (!BlockNumbers.includes(BlockObject.Number)) {
-            
+          if (!BlockNumbers.includes(BlockObject.Number)) { 
             let new1 = [BlockObject]
             new1= new1.concat(Blockdetails)
             setBlockdetails(new1)
+
             let new2 = [BlockObject.Number]
             new2 = new2.concat(BlockNumbers)
             setBlocknumbers(new2)
-            
-           console.log(Blockdetaildata.result)
-           
-          }
-          
 
+           // let new3 = [...BlockObject.Transactions,...Blocktransactions]
+           // new3 = new3.concat(Blocktransactions)
+           // setBlocktransactions(Blockdetaildata.result.transactions)
+             console.log(Blockdetaildata.result.transactions)
+            // console.log(Blocktransactions) 
+            //console.log(Blockdetails)          
+          }
             setflag(true)     
           })
           .catch(e => console.error(e));
       }
-      const fetchDataInterval = setInterval(fetchBlockNumber, 250); 
+      const fetchDataInterval = setInterval(fetchBlockNumber, 500); 
 
     return () => {
       clearInterval(fetchDataInterval); 
@@ -100,12 +102,16 @@ function App() {
 
       <div className='Block table'>
      { flag &&
+     
       <BlockTable Block_details={Blockdetails}></BlockTable>
+     // <TransactionTable Block_Transactions={}></TransactionTable>
      }
       </div>
 
       <div className='Transactions table'>
-        <h1>Blocks table </h1>
+     { flag &&
+        <TransactionTable Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
+      }    
 
       </div>
       <div className='Scedule'>
