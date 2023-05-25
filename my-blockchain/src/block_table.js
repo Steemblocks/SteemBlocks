@@ -1,10 +1,11 @@
 import React from 'react';
-
+import './table.css'
 const BlockTable = ({ Block_details }) => {
     
   return (
    <div>
-     <table >
+    <h2>Latest Block Details</h2>
+     <table className='tableGeneric' >
       <thead>
         <tr>
           <th>LastIrreversibleBlock</th>

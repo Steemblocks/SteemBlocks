@@ -7,7 +7,6 @@ import TransactionTable from './transaction_table';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
-  //const [Blocktransactions,setBlocktransactions] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
   const [flag ,setflag] = useState(false)
    
@@ -51,17 +50,6 @@ function App() {
             const newblcdetail = Blockdetails.slice(0, -1);
             setBlockdetails(newblcdetail);           
           }
-
-          // if(Blocktransactions.length >= 20)
-          // {
-          //   let a = 20 - Blocktransactions.length
-          //   console.log(a)
-          //   const newblcktrans = Blocktransactions.slice(0,a)
-          //   setBlocktransactions(newblcktrans)
-          // }
-
-
-          
             
           if (!BlockNumbers.includes(BlockObject.Number)) { 
             let new1 = [BlockObject]
@@ -71,10 +59,6 @@ function App() {
             let new2 = [BlockObject.Number]
             new2 = new2.concat(BlockNumbers)
             setBlocknumbers(new2)
-
-           // let new3 = [...BlockObject.Transactions,...Blocktransactions]
-           // new3 = new3.concat(Blocktransactions)
-           // setBlocktransactions(Blockdetaildata.result.transactions)
              console.log(Blockdetaildata.result.transactions)
             // console.log(Blocktransactions) 
             //console.log(Blockdetails)          
@@ -96,15 +80,11 @@ function App() {
   return (
     <div className="App">
       
-      <div className='Above all'>
-        <h1>Over all view</h1>
-      </div>
+     
 
       <div className='Block table'>
      { flag &&
-     
       <BlockTable Block_details={Blockdetails}></BlockTable>
-     // <TransactionTable Block_Transactions={}></TransactionTable>
      }
       </div>
 
