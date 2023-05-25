@@ -23,9 +23,7 @@ const TransactionTable = ({ Block_Details }) => {
 
      },[Block_Details])
 
-
     
-
      
    // settransactions(Block_Details[i].result.transactions)
 
@@ -37,6 +35,7 @@ const TransactionTable = ({ Block_Details }) => {
         <tr>
           <th>Transaction Id</th>
           <th>Operation</th>
+          <th>Voter</th>
           <th>Expiration</th>
           {/* Add more table headers for each property */}
        </tr>
@@ -46,8 +45,8 @@ const TransactionTable = ({ Block_Details }) => {
         Transactions.map((object,index) => (
         <tr key={index}>
                 <td>{object.transaction_id}</td>
-                
-                
+                <td>{object.operations[0]?.[0]}</td>
+                <td>{object.operations[0]?.[1].voter}</td>
                <td>{object.expiration}</td> 
         </tr>
 
