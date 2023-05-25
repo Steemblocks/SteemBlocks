@@ -3,7 +3,8 @@ import React from 'react';
 const BlockTable = ({ Block_details }) => {
     
   return (
-    <table>
+   <div>
+     <table >
       <thead>
         <tr>
           <th>LastIrreversibleBlock</th>
@@ -26,6 +27,7 @@ const BlockTable = ({ Block_details }) => {
         ))}
       </tbody>
     </table>
+   </div>
   );
 };
 
