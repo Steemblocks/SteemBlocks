@@ -6,6 +6,7 @@ import BlockTable from './block_table';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
+  const [Blockdetaildata , setBlockdetaildata] = useState()
   
 
   
@@ -25,14 +26,29 @@ function App() {
             return response.json()
           })
           .then(data => {
-            
-           
             const BlockObject = {
               Number: data.result,
-              Withness: 10,
-              Transactions: 5,
+              Withness: "heavy",
+              Transactions: 10,
+              Timestamp: ""
               
             };
+            
+
+
+            fetch(`https://sds1.steemworld.org/blocks_api/getBlock/${data.result}`)
+            .then(response => {
+             return response.json()             
+            }).then(data =>{
+              setBlockdetaildata(data)
+              BlockObject.Timestamp =data.result.timestamp
+              BlockObject.Withness = data.result.witness
+              BlockObject.Transactions = data.result.transactions.length
+
+            })    
+            .catch(e => console.error(e));
+           
+           
             
            
            
@@ -56,7 +72,7 @@ function App() {
             new2 = new2.concat(BlockNumbers)
             setBlocknumbers(new2)
             
-           console.log(Blockdetails)
+           console.log(Blockdetaildata.result)
            
           }
           
@@ -65,14 +81,14 @@ function App() {
           })
           .catch(e => console.error(e));
       }
-      const fetchDataInterval = setInterval(fetchBlockNumber, 500); 
+      const fetchDataInterval = setInterval(fetchBlockNumber, 250); 
 
     return () => {
       clearInterval(fetchDataInterval); 
     }; 
  
      
-  }, [Blockdetails,BlockNumbers])
+  }, [Blockdetails,BlockNumbers,Blockdetaildata])
   
   
   return (
