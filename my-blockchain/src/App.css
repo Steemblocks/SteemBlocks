@@ -1,3 +1,9 @@
+
+body{
+  min-height: 100vh;
+}
+
+
 .App {
   text-align: center;
   margin-top: 5px;
@@ -68,6 +74,7 @@
 .nav-btn:hover{
   background:  #04AA6D;
   border: thin black;
+  border-radius: 5px;
 }
 
 .nav-right {
@@ -81,4 +88,11 @@ TextField{
   padding: 6px;
   border-radius: 4px;
   margin-right: 5px;
+}
+
+.footer{
+  text-align: center;
+}
+.footer p{
+ color: black;
 }

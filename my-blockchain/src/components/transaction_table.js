@@ -34,7 +34,7 @@ const TransactionTable = ({ Block_Details }) => {
     
   return (
     <div>
-      <h2>Last Transactions</h2>
+      <h2>Latest Transactions</h2>
          <table className='tableGeneric'>
       <thead>
         <tr>

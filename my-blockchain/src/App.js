@@ -6,6 +6,10 @@ import TransactionTable from './components/transaction_table';
 import TextField from "@mui/material/TextField";
 import AccountTable from './components/account';
 import Blocksearch from './components/block_search';
+import Aboutpage from './components/about';
+import Communitypage from './components/community_report';
+import Witnesstable from './components/witnesslist';
+import Contenthistory from './components/contenthistory';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
@@ -19,6 +23,7 @@ function App() {
   const [aboutpage,setaboutpage] =useState(false)
   const [communitypage,setcommunitypage] =useState(false)
   const [historypage,sethistorypage] =useState(false)
+  const [withnesspage,setwithnesspage] =useState(false)
    
   useEffect(() => {
       const fetchBlockNumber = () => {       
@@ -144,6 +149,7 @@ function App() {
     setaboutpage(false)
     setcommunitypage(false)
     sethistorypage(false)
+    setwithnesspage(false)
 
   }
 
@@ -152,31 +158,44 @@ function App() {
     setaboutpage(true)
     setcommunitypage(false)
     sethistorypage(false)
+    setwithnesspage(false)
   }
   const handlecommunity =  () => {
     sethomepage(false)
     setaboutpage(false)
     setcommunitypage(true)
     sethistorypage(false)
+    setwithnesspage(false)
   }
   const handlehistory =  () => {
     sethomepage(false)
     setaboutpage(false)
     setcommunitypage(false)
     sethistorypage(true)
+    setwithnesspage(false)
+  }
+
+  const handlewitness =  () => {
+    sethomepage(false)
+    setaboutpage(false)
+    setcommunitypage(false)
+    sethistorypage(false)
+    setwithnesspage(true)
   }
 
     
   return (
     <div>
       <header className='header'>
-        <nav class="top-nav">
-    <div class="nav-left">
+        <nav className="top-nav">
+    <div className="nav-left">
       <button className='nav-btn' onClick={handlehome}>Home</button>
       <button className='nav-btn' onClick={handleabout}>About</button>
-      <button className='nav-btn' onClick={handlecommunity}>CommunityReport</button>
-      <button className='nav-btn' onClick={handlehistory}>ContentHistory</button>
+      <button className='nav-btn' onClick={handlecommunity}>Community Report</button>
+      <button className='nav-btn' onClick={handlehistory}>Content History</button>
+      <button className='nav-btn' onClick={handlewitness}>Witness List</button>
     </div>
+    {!aboutpage && !communitypage && !historypage && !withnesspage &&
     <div class="nav-right">
     <TextField
           id="outlined-basic"
@@ -196,7 +215,7 @@ function App() {
           placeholder='@account/$blocknumber/Transactionid'
         />
         <button className='btn' onClick={handleSearch}>Search</button>
-    </div>
+    </div>}
    </nav>
           </header>
       {homepage &&
@@ -231,14 +250,21 @@ function App() {
       </div>     
     </div>}
     {aboutpage &&
-     <div>About page</div>
+     <Aboutpage/>
      }
      {communitypage &&
-     <div>Community page</div>
+     <Communitypage/>
      }
      {historypage &&
-     <div>content page</div>
+     <Contenthistory/>
      }
+     {withnesspage &&
+     <Witnesstable/>
+     }
+
+   <footer className='footer'>
+    <p>&copy; 2023 <a href="https://steemit.com/@dhaka.witness">@Dhaka.witness</a>. All rights reserved.</p>
+   </footer>
 
     </div>
   );

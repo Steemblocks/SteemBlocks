@@ -8,9 +8,9 @@ const BlockTable = ({ Block_details }) => {
      <table className='tableGeneric' >
       <thead>
         <tr>
-          <th>LastIrreversibleBlock</th>
+          <th>Recent Blocks</th>
           <th>Witness</th>
-          <th>TransactionNumber</th>
+          <th>Transaction Number</th>
           <th>Timestamp</th>
           {/* Add more table headers for each property */}
         </tr>
