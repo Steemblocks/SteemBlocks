@@ -1,5 +1,5 @@
 import React from 'react';
-import './table.css'
+import '../table.css'
 const BlockTable = ({ Block_details }) => {
     
   return (

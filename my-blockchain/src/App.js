@@ -1,18 +1,24 @@
 //import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react'
-import BlockTable from './block_table';
-import TransactionTable from './transaction_table';
+import BlockTable from './components/block_table';
+import TransactionTable from './components/transaction_table';
 import TextField from "@mui/material/TextField";
-import AccountTable from './account';
+import AccountTable from './components/account';
+import Blocksearch from './components/block_search';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
   const [Searchtext , setSearchtext] = useState("")
   const [Searcheditem, setSearcheditem] = useState()
+  const [type,settype]= useState('')
   const [ShowSearch ,setShowSearch] = useState(false)
   const [flag ,setflag] = useState(false)
+  const [homepage,sethomepage] =useState(true)
+  const [aboutpage,setaboutpage] =useState(false)
+  const [communitypage,setcommunitypage] =useState(false)
+  const [historypage,sethistorypage] =useState(false)
    
   useEffect(() => {
       const fetchBlockNumber = () => {       
@@ -88,8 +94,9 @@ function App() {
     if (firstLetter === '@'){
      // console.log("search is account type")
      // console.log(Searchtext)
+     settype('account')
      const ac_search = Searchtext.slice(1)
-      fetch(`https://sds1.steemworld.org/accounts_api/getAccount/${ac_search}`)
+      fetch(`https://sds1.steemworld.org/accounts_api/getAccountsFields/name,created,reputation,count_active_posts,balance_steem,balance_sbd,vests_own,creator/${ac_search}`)
       .then(response => {
         return response.json()
       }).then(data =>{
@@ -101,29 +108,114 @@ function App() {
     
     console.log(Searcheditem)
     }
+    else if (firstLetter === '$'){
+      // console.log("search is account type")
+      // console.log(Searchtext)
+      settype('block')
+      const ac_search = Searchtext.slice(1)
+       fetch(`https://sds1.steemworld.org/blocks_api/getBlock/${ac_search}`)
+       .then(response => {
+         return response.json()
+       }).then(data =>{
+        const BlockObject = {
+          Number: ac_search,
+          Withness: " ",
+          Transactions: " ",
+          Timestamp: " ",             
+        };
+              BlockObject.Timestamp =data.result.timestamp
+              BlockObject.Withness = data.result.witness
+              BlockObject.Transactions = data.result.transactions
+         setSearcheditem(BlockObject);
+         console.log(Searcheditem,BlockObject)
+         setShowSearch(true); 
+ 
+       })    
+       .catch(e => console.error(e));
+     
+     console.log(Searcheditem)
+     }
        
   };
+
+
+  const handlehome =  () => {
+    sethomepage(true)
+    setaboutpage(false)
+    setcommunitypage(false)
+    sethistorypage(false)
+
+  }
+
+  const handleabout =  () => {
+    sethomepage(false)
+    setaboutpage(true)
+    setcommunitypage(false)
+    sethistorypage(false)
+  }
+  const handlecommunity =  () => {
+    sethomepage(false)
+    setaboutpage(false)
+    setcommunitypage(true)
+    sethistorypage(false)
+  }
+  const handlehistory =  () => {
+    sethomepage(false)
+    setaboutpage(false)
+    setcommunitypage(false)
+    sethistorypage(true)
+  }
+
     
   return (
-    <div className="App">
-      <div className='searchblock'>
-       <div className="search">
-        <TextField
+    <div>
+      <header className='header'>
+        <nav class="top-nav">
+    <div class="nav-left">
+      <button className='nav-btn' onClick={handlehome}>Home</button>
+      <button className='nav-btn' onClick={handleabout}>About</button>
+      <button className='nav-btn' onClick={handlecommunity}>CommunityReport</button>
+      <button className='nav-btn' onClick={handlehistory}>ContentHistory</button>
+    </div>
+    <div class="nav-right">
+    <TextField
           id="outlined-basic"
           onChange={inputHandler}
           variant="outlined"
           fullWidth
-          label="Search"
+          InputProps={{
+            style: {
+              borderRadius: '4px',
+              marginTop: '5px' ,
+              padding: '6px 8px',
+              width: '300px',
+              height: '30px',
+            },
+          }}
+          
           placeholder='@account/$blocknumber/Transactionid'
         />
         <button className='btn' onClick={handleSearch}>Search</button>
-        {ShowSearch && 
+    </div>
+   </nav>
+          </header>
+      {homepage &&
+      <div className="App">
+      <div className='searchblock'>
+       <div className="search">
+        
+        
+        {ShowSearch && type === "account" &&
            <AccountTable Account_details= {Searcheditem}></AccountTable>
+        }
+        {ShowSearch && type === "block" &&
+           <Blocksearch Block_details= {Searcheditem}></Blocksearch>
         }
 
        </div>
     </div>
       <div className='blockandtransaction'>
+      
       <div className='Block table'>
      { flag &&
       <BlockTable Block_details={Blockdetails}></BlockTable>
@@ -134,13 +226,20 @@ function App() {
      { flag &&
         <TransactionTable Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
       }    
+      </div>
 
-      </div>
-      </div>
-      <div className='Scedule'>
-        <h1>Scedule</h1>
-      </div>
-      
+      </div>     
+    </div>}
+    {aboutpage &&
+     <div>About page</div>
+     }
+     {communitypage &&
+     <div>Community page</div>
+     }
+     {historypage &&
+     <div>content page</div>
+     }
+
     </div>
   );
 }

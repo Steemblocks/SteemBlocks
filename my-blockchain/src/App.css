@@ -1,47 +1,22 @@
 .App {
   text-align: center;
+  margin-top: 5px;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .searchblock{
   display: flex;
+  box-shadow: #282c34;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  margin-top: 100px;
+  
 }
 
 .search {
@@ -52,7 +27,8 @@
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  margin-top: 5px;
+  margin-top: 3px;
+  margin-left: 2px;
   padding: 10px 24px;
   text-align: center;
   border-radius: 12px;
@@ -67,7 +43,42 @@
 }
 
 .blockandtransaction{
-  display: flex;
+ 
   align-items: top;
 }
 
+.top-nav {
+  background-color: #f1f1f1;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.nav-left {
+  display: flex;
+}
+
+.nav-btn{
+  background: none;
+  border: none;
+}
+
+.nav-btn:hover{
+  background:  #04AA6D;
+  border: thin black;
+}
+
+.nav-right {
+  display: flex;
+}
+#outlined-basic{
+  size: 100px;
+}
+
+TextField{
+  padding: 6px;
+  border-radius: 4px;
+  margin-right: 5px;
+}

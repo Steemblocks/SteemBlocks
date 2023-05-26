@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import './table.css'
+import '../table.css'
 const TransactionTable = ({ Block_Details }) => {
     const [Transactions, settransactions] = useState()
      
@@ -40,7 +40,7 @@ const TransactionTable = ({ Block_Details }) => {
         <tr>
           <th>Transaction Id</th>
           <th>Operation</th>
-          <th>Voter</th>
+          <th>Account</th>
           <th>Expiration</th>
           {/* Add more table headers for each property */}
        </tr>
