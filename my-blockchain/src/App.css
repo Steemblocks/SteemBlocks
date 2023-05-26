@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+.searchblock{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
+.search {
+  box-shadow: #282c34;
+}
+
+.btn{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  margin-top: 5px;
+  padding: 10px 24px;
+  text-align: center;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.btn:hover{
+  background-color: #04AA6D;
+  box-shadow: #282c34;
+}
+
+.blockandtransaction{
+  display: flex;
+  align-items: top;
+}
+

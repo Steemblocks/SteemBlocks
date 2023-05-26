@@ -9,8 +9,8 @@ const BlockTable = ({ Block_details }) => {
       <thead>
         <tr>
           <th>LastIrreversibleBlock</th>
-          <th>Withness</th>
-          <th>Transaction number</th>
+          <th>Witness</th>
+          <th>TransactionNumber</th>
           <th>Timestamp</th>
           {/* Add more table headers for each property */}
         </tr>

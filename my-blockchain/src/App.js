@@ -3,11 +3,15 @@ import './App.css';
 import React, { useEffect, useState } from 'react'
 import BlockTable from './block_table';
 import TransactionTable from './transaction_table';
-
+import TextField from "@mui/material/TextField";
+import AccountTable from './account';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
+  const [Searchtext , setSearchtext] = useState("")
+  const [Searcheditem, setSearcheditem] = useState()
+  const [ShowSearch ,setShowSearch] = useState(false)
   const [flag ,setflag] = useState(false)
    
   useEffect(() => {
@@ -23,9 +27,6 @@ function App() {
               Transactions: " ",
               Timestamp: " ",             
             };
-            
-
-
             fetch(`https://sds1.steemworld.org/blocks_api/getBlock/${data.result}`)
             .then(response => {
              return response.json()             
@@ -71,17 +72,58 @@ function App() {
 
     return () => {
       clearInterval(fetchDataInterval); 
-    }; 
- 
-     
+    };  
+    
+    
   }, [Blockdetails,BlockNumbers,Blockdetaildata])
-  
-  
+
+
+  let inputHandler = (e) => {
+    var lowerCase = e.target.value.toLowerCase();
+    setShowSearch(false)
+    setSearchtext(lowerCase);
+  };
+  const handleSearch =  () => {
+    const firstLetter = Searchtext.charAt(0); 
+    if (firstLetter === '@'){
+     // console.log("search is account type")
+     // console.log(Searchtext)
+     const ac_search = Searchtext.slice(1)
+      fetch(`https://sds1.steemworld.org/accounts_api/getAccount/${ac_search}`)
+      .then(response => {
+        return response.json()
+      }).then(data =>{
+        setSearcheditem(data.result);
+        setShowSearch(true); 
+
+      })    
+      .catch(e => console.error(e));
+    
+    console.log(Searcheditem)
+    }
+       
+  };
+    
   return (
     <div className="App">
-      
-     
+      <div className='searchblock'>
+       <div className="search">
+        <TextField
+          id="outlined-basic"
+          onChange={inputHandler}
+          variant="outlined"
+          fullWidth
+          label="Search"
+          placeholder='@account/$blocknumber/Transactionid'
+        />
+        <button className='btn' onClick={handleSearch}>Search</button>
+        {ShowSearch && 
+           <AccountTable Account_details= {Searcheditem}></AccountTable>
+        }
 
+       </div>
+    </div>
+      <div className='blockandtransaction'>
       <div className='Block table'>
      { flag &&
       <BlockTable Block_details={Blockdetails}></BlockTable>
@@ -93,6 +135,7 @@ function App() {
         <TransactionTable Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
       }    
 
+      </div>
       </div>
       <div className='Scedule'>
         <h1>Scedule</h1>

@@ -5,29 +5,32 @@ const TransactionTable = ({ Block_Details }) => {
      
     
      useEffect(() => {
-        settransactions(Block_Details)
-
-    //     if(Block_Details.length>0){
-    //         for (let i=0;i< Block_Details.length;i++)
-    //         {
-                
-    //          let new2 = Block_Details[i].Transactions
-    //         new2 = new2.concat(Transactions)
-           
-    //         settransactions(new2)
-
-    //         }
-            
-    //     }
-    //     console.log(Transactions)
-
+        settransactions(Block_Details)   
      },[Block_Details])
 
-    
-     
-   // settransactions(Block_Details[i].result.transactions)
-//<td>{object.operations[0]?.[1].voter}</td>
-               // 
+    const renderSwitch = (obj) => {
+      switch(obj.operations[0]?.[0]) {
+         case 'vote':
+           return obj.operations[0]?.[1].voter;
+         case 'comment':
+           return obj.operations[0]?.[1].author;
+         case 'claim_account':
+           return obj.operations[0]?.[1].creator;
+         case 'feed_publish':
+           return obj.operations[0]?.[1].publisher; 
+         case 'claim_reward_balance':
+           return obj.operations[0]?.[1].account; 
+         case 'transfer':
+           return <span> <b>From:</b>{obj.operations[0]?.[1].from}<b>To:</b>{obj.operations[0]?.[1].to }</span>  ;      
+         case 'transfer_to_vesting':
+           return <span> <b>From:</b>{obj.operations[0]?.[1].from} <b>To:</b>{obj.operations[0]?.[1].to} </span>  ;      
+         
+         case 'custom_json':
+           return obj.operations[0]?.[1].required_posting_auths[0]  ;               
+         default:
+           return 'justty';
+      }
+    }
     
   return (
     <div>
@@ -48,7 +51,8 @@ const TransactionTable = ({ Block_Details }) => {
         <tr key={index}>
                 <td>{object.transaction_id}</td>
                 <td>{object.operations[0]?.[0]}</td>
-                {object.operations[0]?.[0] === "vote" &&
+                <td>{renderSwitch(object)}</td>
+                {/* {object.operations[0]?.[0] === "vote" &&
                  <td>{object.operations[0]?.[1].voter}</td>
                 }
                 {object.operations[0]?.[0] === "comment" &&
@@ -71,7 +75,7 @@ const TransactionTable = ({ Block_Details }) => {
                 }
                 {object.operations[0]?.[0] === "custom_json" &&
                  <td>{object.operations[0]?.[1].required_posting_auths[0]}</td>
-                }
+                } */}
                 <td>{object.expiration}</td>
                 
         </tr>
