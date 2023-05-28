@@ -35,7 +35,7 @@ const Witnesstable = () => {
               <thead>
                 <tr>
                   <th>Rank</th>
-                  <th>WitnessName</th>
+                  <th>Witness Name</th>
                   <th>Received Votes</th>
                   <th>Hard Fork Version</th>
                   <th>Running Version</th>                  
@@ -52,13 +52,13 @@ const Witnesstable = () => {
                  {datavar.map((object,index) => ( 
                   <tr key={index}>
                     <td>{object[1]}</td>
-                    <td>{object[0]}</td>
+                    <td> <a href={'https://steemit.com/@' + object[0]} target='_blank'>{object[0]}</a></td>
                     <td>{(object[5]/1000000046373.045).toFixed(2)}</td>
                     <td>{object[9]}</td>
                     <td>{object[8]}</td>
                     <td>{object[6]}</td>
                     <td>{object[7]}</td>
-                    <td><span><b>Base:</b>{object[17].base}</span> <span><b>quote:</b>{object[17].quote}</span></td>
+                    <td><span>{object[17].base}</span> <span><b>/</b>{object[17].quote}</span></td>
                     <td>{object[11]}</td>
                     <td>{object[13]}</td>
                     <td><a href={object[15]}>click here</a></td>

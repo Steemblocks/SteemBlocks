@@ -56,7 +56,7 @@ const Communitypage = () => {
 
         {flag &&
         <div>
-        <h2>Community Report</h2>
+        <h2>Community Data</h2>
          <table className='tableGeneric' >
           <thead>
             <tr>

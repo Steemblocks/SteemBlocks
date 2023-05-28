@@ -224,7 +224,7 @@ function App() {
     <div className="nav-left">
       <button className='nav-btn' onClick={handlehome}>Home</button>
       <button className='nav-btn' onClick={handleabout}>About</button>
-      <button className='nav-btn' onClick={handlecommunity}>Community Report</button>
+      <button className='nav-btn' onClick={handlecommunity}>Community Data</button>
       <button className='nav-btn' onClick={handlehistory}>Content History</button>
       <button className='nav-btn' onClick={handlewitness}>Witness List</button>
     </div>
@@ -303,7 +303,7 @@ function App() {
      }
 
    <footer className='footer'>
-    <p>&copy; 2023 <a href="https://steemit.com/@dhaka.witness">@Dhaka.witness</a>. All rights reserved.</p>
+    <p>&copy; 2023 <a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a>. All rights reserved.</p>
    </footer>
 
     </div>
