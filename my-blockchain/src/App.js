@@ -10,6 +10,7 @@ import Aboutpage from './components/about';
 import Communitypage from './components/community_report';
 import Witnesstable from './components/witnesslist';
 import Contenthistory from './components/contenthistory';
+import TransactionSearchTable from './components/transaction_search';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
@@ -24,6 +25,7 @@ function App() {
   const [communitypage,setcommunitypage] =useState(false)
   const [historypage,sethistorypage] =useState(false)
   const [withnesspage,setwithnesspage] =useState(false)
+  const [Searchfailedflag,setsearchfailedflag] = useState(false)
    
   useEffect(() => {
       const fetchBlockNumber = () => {       
@@ -92,6 +94,7 @@ function App() {
   let inputHandler = (e) => {
     var lowerCase = e.target.value.toLowerCase();
     setShowSearch(false)
+    setsearchfailedflag(false)
     setSearchtext(lowerCase);
   };
   const handleSearch =  () => {
@@ -139,6 +142,36 @@ function App() {
        .catch(e => console.error(e));
      
      console.log(Searcheditem)
+     }
+
+     else{
+      settype('transaction')
+      const ac_search = Searchtext
+       fetch(`https://sds1.steemworld.org/transactions_api/getTransactionById/${ac_search}`)
+       .then(response => {
+         return response.json()
+       }).then(data =>{
+        const TransactionObject = {
+          Id: ac_search,          
+          Result: " ",                      
+        };
+         TransactionObject.Result = data.result
+         setSearcheditem(TransactionObject);
+         console.log(Searcheditem,TransactionObject)
+         setShowSearch(true); 
+ 
+       })    
+       .catch(e => console.error(e));
+     
+     console.log(Searcheditem)
+      
+
+     }
+
+     if(Searcheditem === ''){
+      setShowSearch(false)
+      setsearchfailedflag(true)
+
      }
        
   };
@@ -229,6 +262,13 @@ function App() {
         }
         {ShowSearch && type === "block" &&
            <Blocksearch Block_details= {Searcheditem}></Blocksearch>
+        }
+        {ShowSearch && type === "transaction" &&
+            <TransactionSearchTable Block_Details={Searcheditem}></TransactionSearchTable>
+        }
+        {Searchfailedflag &&
+        <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
+
         }
 
        </div>

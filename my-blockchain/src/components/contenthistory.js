@@ -59,7 +59,7 @@ const Contenthistory = () => {
         <button className='btn-com' onClick={handleSearch}>Search</button>
         </div>
         {flag &&
-        <div>
+        <div className='comm-table'>
         <h2>Community Report</h2>
          <table className='tableGeneric' >
           <thead>

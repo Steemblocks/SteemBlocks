@@ -30,7 +30,7 @@ const Witnesstable = () => {
         <div>
             {flag &&
             <div>
-            <h2>Withness List</h2>
+            <h2>Witness List</h2>
              <table className='tableGeneric' >
               <thead>
                 <tr>

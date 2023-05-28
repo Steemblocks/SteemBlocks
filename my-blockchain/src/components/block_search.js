@@ -8,9 +8,9 @@ const Blocksearch = ({ Block_details }) => {
      <table className='tableGeneric' >
       <thead>
         <tr>
-          <th>LastIrreversibleBlock</th>
+          <th>Block Number</th>
           <th>Witness</th>
-          <th>TransactionNumber</th>
+          <th>Transaction Number</th>
           <th>Timestamp</th>
           {/* Add more table headers for each property */}
         </tr>
