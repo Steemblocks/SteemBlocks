@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import '../table.css'
+import '../community_report.css'
 const TransactionTable = ({ Block_Details }) => {
     const [Transactions, settransactions] = useState()
      
@@ -35,7 +35,7 @@ const TransactionTable = ({ Block_Details }) => {
   return (
     <div>
       <h2>Latest Transactions</h2>
-         <table className='tableGeneric'>
+         <table className='table'>
       <thead>
         <tr>
           <th>Transaction Id</th>

@@ -1,20 +1,25 @@
-.tableGeneric {
+.table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-top: 15px;
     width: 100%;
+     height: 100vh; /* Adjust this to fit your specific layout requirements */
+     overflow: auto;
   }
   
-  .tableGeneric td, .tableGeneric th {
+  .table td, .table th {
     border: 1px solid #ddd;
     padding: 8px;
+    max-width: 100vh;
+    overflow: hidden;
+   text-overflow: ellipsis;
   }
   
-  .tableGeneric tr:nth-child(even){background-color: #f2f2f2;}
+  .table tr:nth-child(even){background-color: #f2f2f2;}
   
-  .tableGeneric tr:hover {background-color: #ddd;}
+  .table tr:hover {background-color: #ddd;}
   
-  .tableGeneric th {
+  .table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -25,7 +30,7 @@
   .communityclass{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   }
 
@@ -34,6 +39,12 @@
     text-align: center;
 
   }
+
+  .comm-table{
+    max-width: 100%;
+  }
+
+  
 
   .btn-com{
     background-color: #4CAF50; /* Green */

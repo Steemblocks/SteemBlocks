@@ -11,6 +11,8 @@ import Communitypage from './components/community_report';
 import Witnesstable from './components/witnesslist';
 import Contenthistory from './components/contenthistory';
 import TransactionSearchTable from './components/transaction_search';
+import Steemstat from './components/steemstat';
+import WitnessScedule from './components/withnesss_scedule';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
@@ -274,16 +276,23 @@ function App() {
        </div>
     </div>
       <div className='blockandtransaction'>
+        {flag &&
+        <Steemstat></Steemstat>}
+    
       
-      <div className='Block table'>
-     { flag &&
-      <BlockTable Block_details={Blockdetails}></BlockTable>
+      <div className='Block-table'>
+     { flag && 
+      <div className='Block-Withness'>
+        <BlockTable className='component' Block_details={Blockdetails}></BlockTable>
+        <WitnessScedule className='component'></WitnessScedule>
+      </div>
+      
      }
       </div>
 
-      <div className='Transactions table'>
+      <div className='Transactions-table'>
      { flag &&
-        <TransactionTable Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
+        <TransactionTable  Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
       }    
       </div>
 

@@ -1,6 +1,8 @@
 
 body{
   min-height: 100vh;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 
@@ -93,7 +95,47 @@ TextField{
 
 .footer{
   text-align: center;
+  margin-bottom: 10px;
 }
 .footer p{
  color: black;
+}
+.Block-Withness{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  text-align: center; 
+  
+}
+
+.component{
+  margin-left: 20px;
+}
+
+.Transactions-table{
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+@media (max-width: 400px) {
+  .top-nav{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Block-Withness{
+    display: flex;
+    flex-direction: column;
+   
+    text-align: center; 
+    
+  }
+
+  .Transactions-table{
+    display: flex;
+    scale: 50%;
+    
+  }
 }

@@ -8,6 +8,8 @@
   .tableGeneric td, .tableGeneric th {
     border: 1px solid #ddd;
     padding: 8px;
+    overflow: hidden;
+   text-overflow: ellipsis;
   }
   
   .tableGeneric tr:nth-child(even){background-color: #f2f2f2;}

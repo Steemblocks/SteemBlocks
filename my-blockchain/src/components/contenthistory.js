@@ -51,6 +51,7 @@ const Contenthistory = () => {
               padding: '6px 8px',
               width: '360px',
               height: '30px',
+              background:'none',
             },
           }}
           label='Search'
@@ -61,7 +62,7 @@ const Contenthistory = () => {
         {flag &&
         <div className='comm-table'>
         <h2>Community Report</h2>
-         <table className='tableGeneric' >
+         <table className='table' >
           <thead>
             <tr>
               <th>Serial</th>
