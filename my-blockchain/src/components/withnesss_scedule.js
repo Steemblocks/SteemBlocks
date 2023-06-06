@@ -19,7 +19,7 @@ function WitnessScedule() {
         });
 
         const jsonData = await response.json();
-        console.log(jsonData.result.current_shuffled_witnesses)
+       // console.log(jsonData.result.current_shuffled_witnesses)
         
 
         setData(jsonData.result.current_shuffled_witnesses);

@@ -2,7 +2,7 @@ import React from 'react';
 import '../card.css';
 
 const Card = ({ title,content }) => {
-    console.log(content)
+   // console.log(content)
   return (
     <div>
         {title && content &&

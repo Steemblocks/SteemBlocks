@@ -13,12 +13,13 @@ import Contenthistory from './components/contenthistory';
 import TransactionSearchTable from './components/transaction_search';
 import Steemstat from './components/steemstat';
 import WitnessScedule from './components/withnesss_scedule';
+import LoadingPage from './components/loadingpage';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
   const [Searchtext , setSearchtext] = useState("")
-  const [Searcheditem, setSearcheditem] = useState()
+  const [Searcheditem, setSearcheditem] = useState("")
   const [type,settype]= useState('')
   const [ShowSearch ,setShowSearch] = useState(false)
   const [flag ,setflag] = useState(false)
@@ -28,6 +29,7 @@ function App() {
   const [historypage,sethistorypage] =useState(false)
   const [withnesspage,setwithnesspage] =useState(false)
   const [Searchfailedflag,setsearchfailedflag] = useState(false)
+  const [isLoading, setIsLoading] = useState(true);
    
   useEffect(() => {
       const fetchBlockNumber = () => {       
@@ -110,8 +112,15 @@ function App() {
       .then(response => {
         return response.json()
       }).then(data =>{
-        setSearcheditem(data.result);
+        if(!data.result){
+          setSearcheditem(null);
+        }else{
+          setSearcheditem(data.result);
+          
+
+        }
         setShowSearch(true); 
+        
 
       })    
       .catch(e => console.error(e));
@@ -128,17 +137,26 @@ function App() {
          return response.json()
        }).then(data =>{
         const BlockObject = {
-          Number: ac_search,
+          Number: " ",
           Withness: " ",
           Transactions: " ",
           Timestamp: " ",             
         };
+              
               BlockObject.Timestamp =data.result.timestamp
               BlockObject.Withness = data.result.witness
               BlockObject.Transactions = data.result.transactions
-         setSearcheditem(BlockObject);
+        // setSearcheditem(BlockObject);
          console.log(Searcheditem,BlockObject)
-         setShowSearch(true); 
+         //setShowSearch(true); 
+         if(!data){
+          setsearchfailedflag(true)
+        }else{
+          BlockObject.Number = ac_search
+          setSearcheditem(BlockObject);
+          setShowSearch(true); 
+
+        }
  
        })    
        .catch(e => console.error(e));
@@ -158,9 +176,16 @@ function App() {
           Result: " ",                      
         };
          TransactionObject.Result = data.result
-         setSearcheditem(TransactionObject);
-         console.log(Searcheditem,TransactionObject)
-         setShowSearch(true); 
+        // setSearcheditem(TransactionObject);
+        // console.log(Searcheditem,TransactionObject)
+        // setShowSearch(true); 
+        if(!data){
+          setsearchfailedflag(true)
+        }else{
+          setSearcheditem(TransactionObject);
+          setShowSearch(true); 
+
+        }
  
        })    
        .catch(e => console.error(e));
@@ -170,11 +195,11 @@ function App() {
 
      }
 
-     if(Searcheditem === ''){
-      setShowSearch(false)
-      setsearchfailedflag(true)
+    //  if(Searcheditem === ''){
+    //   setShowSearch(false)
+    //   setsearchfailedflag(true)
 
-     }
+    //  }
        
   };
 
@@ -218,115 +243,126 @@ function App() {
     setwithnesspage(true)
   }
 
+
+
+  useEffect(() => {
+    // Simulate a delay before hiding the loading page
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+  }, []);
     
   return (
+    <>
+    {isLoading? <LoadingPage/>:
     <div>
-      <header className='header'>
-        <nav className="top-nav">
-    <div className="nav-left">
-      <button className='nav-btn' onClick={handlehome}>Home</button>
-      <button className='nav-btn' onClick={handleabout}>About</button>
-      <button className='nav-btn' onClick={handlecommunity}>Community Data</button>
-      <button className='nav-btn' onClick={handlehistory}>Content History</button>
-      <button className='nav-btn' onClick={handlewitness}>Witness List</button>
-    </div>
-    {!aboutpage && !communitypage && !historypage && !withnesspage &&
-    <div class="nav-right">
-    <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          InputProps={{
-            style: {
-              borderRadius: '4px',
-              marginTop: '5px' ,
-              padding: '6px 8px',
-              width: '300px',
-              height: '30px',
-            },
-          }}
-          
-          placeholder='@account/$blocknumber/Transactionid'
-        />
-        <button className='btn' onClick={handleSearch}>Search</button>
-    </div>}
-   </nav>
-          </header>
-      {homepage &&
-      <div className="App">
-      <div className='searchblock'>
-       <div className="search">
+    <header className='header'>
+      <nav className="top-nav">
+  <div className="nav-left">
+    <button className='nav-btn' onClick={handlehome}>Home</button>
+    <button className='nav-btn' onClick={handleabout}>About</button>
+    <button className='nav-btn' onClick={handlecommunity}>Community Data</button>
+    <button className='nav-btn' onClick={handlehistory}>Content History</button>
+    <button className='nav-btn' onClick={handlewitness}>Witness List</button>
+  </div>
+  {!aboutpage && !communitypage && !historypage && !withnesspage &&
+  <div class="nav-right">
+  <TextField
+        id="outlined-basic"
+        onChange={inputHandler}
+        variant="outlined"
+        fullWidth
+        InputProps={{
+          style: {
+            borderRadius: '4px',
+            marginTop: '5px' ,
+            padding: '6px 8px',
+            width: '300px',
+            height: '30px',
+          },
+        }}
         
-        
-        {ShowSearch && type === "account" &&
-           <AccountTable Account_details= {Searcheditem}></AccountTable>
-        }
-        {ShowSearch && type === "block" &&
-           <Blocksearch Block_details= {Searcheditem}></Blocksearch>
-        }
-        {ShowSearch && type === "transaction" &&
-            <TransactionSearchTable Block_Details={Searcheditem}></TransactionSearchTable>
-        }
-        {Searchfailedflag && 
-        <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
+        placeholder='@account/$blocknumber/Transactionid'
+      />
+      <button className='btn' onClick={handleSearch}>Search</button>
+  </div>}
+ </nav>
+        </header>
+    {homepage &&
+    <div className="App">
+    <div className='searchblock'>
+     <div className="search">
+      
+     {ShowSearch && !Searcheditem &&
+      <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
 
-        }
+      }
+      {ShowSearch && type === "account" && Searcheditem &&
+         <AccountTable Account_details= {Searcheditem}></AccountTable>
+      }
+      {ShowSearch && type === "block" && Searcheditem &&
+         <Blocksearch Block_details= {Searcheditem}></Blocksearch>
+      }
+      {ShowSearch && type === "transaction" && Searcheditem &&
+          <TransactionSearchTable Block_Details={Searcheditem}></TransactionSearchTable>
+      }
+      
 
-       </div>
-    </div>
-      <div className='blockandtransaction'>
-        <div>
-        {flag &&
-        <Steemstat></Steemstat>}
-        </div>
-       
+     </div>
+  </div>
+    <div className='blockandtransaction'>
+      <div>
+      {flag &&
+      <Steemstat></Steemstat>}
+      </div>
+     
+  
     
+    <div className='Block-table'>
+   { flag && 
+    <div className='Block-Withness'>
+      <BlockTable className='component' Block_details={Blockdetails}></BlockTable>
       
-      <div className='Block-table'>
-     { flag && 
-      <div className='Block-Withness'>
-        <BlockTable className='component' Block_details={Blockdetails}></BlockTable>
-        
-      </div>
-      
-     }
-      </div>
-
-      <div className='Block-table'>
-     { flag && 
-      <div className='Block-Withness'>
-        <WitnessScedule className='component'></WitnessScedule>
-      </div>
-      
-     }
-      </div>
-
-      </div> 
-      <div className='Transactions-table'>
-     { flag &&
-        <TransactionTable  Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
-      }    
-      </div>    
-    </div>}
-    {aboutpage &&
-     <Aboutpage/>
-     }
-     {communitypage &&
-     <Communitypage/>
-     }
-     {historypage &&
-     <Contenthistory/>
-     }
-     {withnesspage &&
-     <Witnesstable/>
-     }
-
-   <footer className='footer'>
-    <p>&copy; 2023 <a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a>. All rights reserved.</p>
-   </footer>
-
     </div>
+    
+   }
+    </div>
+
+    <div className='Block-table'>
+   { flag && 
+    <div className='Block-Withness'>
+      <WitnessScedule className='component'></WitnessScedule>
+    </div>
+    
+   }
+    </div>
+
+    </div> 
+    <div className='Transactions-table'>
+   { flag &&
+      <TransactionTable  Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
+    }    
+    </div>    
+  </div>}
+  {aboutpage &&
+   <Aboutpage/>
+   }
+   {communitypage &&
+   <Communitypage/>
+   }
+   {historypage &&
+   <Contenthistory/>
+   }
+   {withnesspage &&
+   <Witnesstable/>
+   }
+
+ <footer className='footer'>
+  <p>&copy; 2023 <a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a>. All rights reserved.</p>
+ </footer>
+
+  </div>}
+    </>
   );
 }
 

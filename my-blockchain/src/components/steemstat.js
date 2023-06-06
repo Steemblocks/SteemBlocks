@@ -16,7 +16,7 @@ const Witnesstable = () => {
     const STEEM = 'STEEM';
 
     const fetchcur_inf =  (Blocknumber) => { 
-      console.log(Blocknumber)
+      //console.log(Blocknumber)
       var start_inflation_rate = STEEM_INFLATION_RATE_START_PERCENT;
       var inflation_rate_adjustment =
       Blocknumber / STEEM_INFLATION_NARROWING_PERIOD;
@@ -48,7 +48,7 @@ const Witnesstable = () => {
                     New_steem_per_day: (STEEM_BLOCKS_PER_DAY * parseFloat(data.result.virtual_supply) * ((fetchcur_inf(data.result.head_block_number)) / 10000) / (STEEM_BLOCKS_PER_YEAR ).toFixed(3)).toFixed(3) + ' ' + STEEM , 
                     //Inflation: fetchcur_inf(data.result.head_block_number) /100       
                   };
-                    console.log(data.result)
+                  //  console.log(data.result)
                     fetchcur_inf(data.result.head_block_number)
                     //const gbprops = data.result
                     setdatavar(Stat);

@@ -23,9 +23,20 @@ const Contenthistory = () => {
           .then(response => {
             return response.json()
           }).then(data =>{
-            console.log(data.result.rows)
+           // console.log(data.result.rows)
+            //setitem(data.result.rows);
+           // setflag(true);
+           if(data.result.rows){
+              
             setitem(data.result.rows);
-            setflag(true); 
+           
+
+          }else{
+            setitem(null)
+          }
+         
+          setflag(true);
+
     
           })    
           .catch(e => console.error(e));
@@ -59,9 +70,14 @@ const Contenthistory = () => {
         />
         <button className='btn-com' onClick={handleSearch}>Search</button>
         </div>
-        {flag &&
+        {flag && !item &&
+        <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
+
+        }
+        
+        {flag && item &&
         <div className='comm-table'>
-        <h2>Community Report</h2>
+        <h2>History</h2>
          <table className='table' >
           <thead>
             <tr>
