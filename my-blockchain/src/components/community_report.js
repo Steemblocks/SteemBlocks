@@ -17,8 +17,18 @@ const Communitypage = () => {
           .then(response => {
             return response.json()
           }).then(data =>{
-            setitem(data.result);
+            console.log(data)
+            if(data.result){
+              
+              setitem(data.result);
+             
+
+            }else{
+              setitem(null)
+            }
+           
             setflag(true); 
+            
     
           })    
           .catch(e => console.error(e));
@@ -31,6 +41,7 @@ const Communitypage = () => {
     
   return (
     <div className='communityclass' >
+      <div><h2>Hello jadkskfhjandkmsvf kcaksvf</h2></div>
         <div className='com-container' >
         <TextField
           id="outlined-basic"
@@ -51,10 +62,14 @@ const Communitypage = () => {
         />
         <button className='btn-com' onClick={handleSearch}>Search</button>
         </div>
+        {flag && !item &&
+        <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
+
+        }
 
 
 
-        {flag &&
+        {flag && item &&
         <div>
         <h2>Community Data</h2>
          <table className='tableGeneric' >

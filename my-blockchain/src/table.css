@@ -1,13 +1,20 @@
+
 .tableGeneric {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     margin-top: 15px;
     width: 100%;
+    overflow: hidden;
   }
+
+  .scrollbar{
+    justify-content: flex-start;
+   }
   
   .tableGeneric td, .tableGeneric th {
     border: 1px solid #ddd;
     padding: 8px;
+    text-align: center;
     overflow: hidden;
    text-overflow: ellipsis;
   }
@@ -19,7 +26,17 @@
   .tableGeneric th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #04AA6D;
     color: white;
+  }
+
+
+  @media (max-width: 400px) {
+    .scrolltobe {
+      display: flex;
+      width: 100%;
+      overflow-x: scroll;
+    }
+    
   }

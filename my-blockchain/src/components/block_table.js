@@ -3,7 +3,7 @@ import '../table.css'
 const BlockTable = ({ Block_details }) => {
     
   return (
-   <div>
+   <div >
     <h2>Latest Block Details</h2>
      <table className='tableGeneric' >
       <thead>

@@ -4,8 +4,11 @@ const AccountTable = ({ Account_details }) => {
     console.log(Account_details.rows[0])
     
   return (
-   <div>
-    <h2>Account Information</h2>
+    
+    
+   <div className='scrollbar'>
+   <h2>Account Information</h2>
+    
      <table className='tableGeneric' >
       <thead>
         <tr>
@@ -37,6 +40,7 @@ const AccountTable = ({ Account_details }) => {
       </tbody>
     </table>
    </div>
+  
   );
 };
 

@@ -268,7 +268,7 @@ function App() {
         {ShowSearch && type === "transaction" &&
             <TransactionSearchTable Block_Details={Searcheditem}></TransactionSearchTable>
         }
-        {Searchfailedflag &&
+        {Searchfailedflag && 
         <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
 
         }
@@ -276,27 +276,38 @@ function App() {
        </div>
     </div>
       <div className='blockandtransaction'>
+        <div>
         {flag &&
         <Steemstat></Steemstat>}
+        </div>
+       
     
       
       <div className='Block-table'>
      { flag && 
       <div className='Block-Withness'>
         <BlockTable className='component' Block_details={Blockdetails}></BlockTable>
+        
+      </div>
+      
+     }
+      </div>
+
+      <div className='Block-table'>
+     { flag && 
+      <div className='Block-Withness'>
         <WitnessScedule className='component'></WitnessScedule>
       </div>
       
      }
       </div>
 
+      </div> 
       <div className='Transactions-table'>
      { flag &&
         <TransactionTable  Block_Details={Blockdetaildata.result.transactions}></TransactionTable>
       }    
-      </div>
-
-      </div>     
+      </div>    
     </div>}
     {aboutpage &&
      <Aboutpage/>

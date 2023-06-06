@@ -1,0 +1,31 @@
+.card {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 260px;
+    margin-top: 10px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #04AA6D;
+    margin: 0;
+  }
+  
+  .card-content {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 400px) {
+    .card {
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+        width: 150px;
+      }
+  }
+

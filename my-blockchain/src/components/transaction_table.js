@@ -33,8 +33,11 @@ const TransactionTable = ({ Block_Details }) => {
     }
     
   return (
+    <>
+
     <div>
-      <h2>Latest Transactions</h2>
+    <h2 className='trans-header'>Latest Transactions</h2>
+
          <table className='table'>
       <thead>
         <tr>
@@ -65,23 +68,9 @@ const TransactionTable = ({ Block_Details }) => {
    
 </div>
 
+</>
 
-//      
-//         {Block_Details.map((object,index) => (
-//             object.Transactions.map((object2,index) => (
-//                 <tr key={index}>
-            
-            
-//             <td>{object2.transaction_id}</td>
-//             <td>{object2.expiration}</td> 
-
-//             {/* Render more table cells for each property */}
-//           </tr>
-//             ))
-          
-//         ))}
-//       
-//     
+    
    );
 };
 

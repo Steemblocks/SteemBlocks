@@ -53,6 +53,8 @@ body{
 .blockandtransaction{
  
   align-items: top;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .top-nav {
@@ -87,11 +89,10 @@ body{
   size: 100px;
 }
 
-TextField{
-  padding: 6px;
-  border-radius: 4px;
-  margin-right: 5px;
+input{
+  height: 2px !important;
 }
+
 
 .footer{
   text-align: center;
@@ -117,6 +118,10 @@ TextField{
   justify-content: center;
   
 }
+.search{
+  display: flex;
+  justify-content: flex-start;
+}
 
 
 @media (max-width: 400px) {
@@ -134,8 +139,45 @@ TextField{
   }
 
   .Transactions-table{
-    display: flex;
-    scale: 50%;
+/* max-width: ;     */
+display: flex;
+justify-content: flex-start;
+    padding-left: 5px;
+    text-align: center;
+    overflow: auto;
     
   }
+  .search{
+    display: flex;
+    justify-content: flex-start;
+        padding-left: 5px;
+        text-align: center;
+        overflow: auto;
+  }
+
+  .statdiv{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .blockandtransaction{
+    scale: 80%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .nav-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
+
+.statdiv{
+  display: flex;
 }

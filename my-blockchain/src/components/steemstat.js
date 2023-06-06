@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../table.css'
+import Card from './card';
 const Witnesstable = () => {
     const [datavar,setdatavar] = useState()
     const [flag ,setflag] =useState(false)
@@ -67,48 +68,81 @@ const Witnesstable = () => {
       return () => {
       clearInterval(fetchDataInterval); 
       };  
+
       }, []);
 
       return(
         <div>
+          <h2>Market Stats</h2>
           {flag &&
-           <div>
-           <h2>Market Stats</h2>
-            <table className='tableGeneric' >
-             <thead>
-               <tr>
-                 <th>Current Supply</th>
-                 <th>Current SBD supply</th>
-                 <th>Virtual steem</th>
-                 <th>Steems Per Day</th>
-                 <th>Annual Inflation Rate</th>
-                 <th>Vesting Fund</th>
-                 <th>Vesting Shares</th>
-                 <th>Steems Per mVest</th>
-                 <th>Print Rate</th>
-                 <th>Interest Rate</th>
-                 {/* Add more table headers for each property */}
-               </tr>
-             </thead>
-             <tbody>
-              
-                 <tr >
-                   <td>{datavar.CurrentSuppy}</td>
-                   <td>{datavar.Current_Sbd_Supply}</td>
-                   <td>{datavar.Vsupply}</td>
-                   <td>{datavar.New_steem_per_day}</td>
-                   <td>{datavar.Inflation} <span>%</span></td>                  
-                   <td>{datavar.VFSteem}</td>
-                   <td>{datavar.VFShare}</td>
-                   <td>{(parseFloat(datavar.VFShare)/ parseFloat(datavar.VFSteem)).toFixed(3)}</td>
-                   <td>{datavar.Printrate}</td>
-                   <td>{datavar.Interestrate}</td>    
-                   {/* Render more table cells for each property */}
-                 </tr>
-            
-             </tbody>
-           </table>
+          <div>
+            <Card title='Current Supply' content={[datavar.CurrentSuppy,datavar.Current_Sbd_Supply]}></Card>
+            <Card title='Virtual Steem' content={['virtual ' + datavar.Vsupply]}></Card>
+            <Card title='Inflation' content={['Annual Rate ' + datavar.Inflation, 'Steems Per day :' + datavar.New_steem_per_day]}></Card>
+            <Card title='Stake' content={['Fund :' + datavar.VFSteem, 'Share :' + datavar.VFShare]}></Card>
+            <Card title='SBD' content={[datavar.Current_Sbd_Supply, 'Print Rate :' + datavar.Printrate, 'Interest Rate :' + datavar.Interestrate]}></Card>
+
           </div>
+
+
+          //  <div className='statdiv'>
+           
+          //  <div>
+          //  <table className='tableGeneric' >
+          //    <thead>
+          //      <tr>
+          //        <th>Current Supply</th>
+          //        <th>Current SBD supply</th>
+          //        <th>Virtual steem</th>
+          //        <th>Steems Per Day</th>
+          //        <th>Annual Inflation Rate</th>
+                 
+          //        {/* Add more table headers for each property */}
+          //      </tr>
+          //    </thead>
+          //    <tbody>
+              
+          //        <tr >
+          //          <td>{datavar.CurrentSuppy}</td>
+          //          <td>{datavar.Current_Sbd_Supply}</td>
+          //          <td>{datavar.Vsupply}</td>
+          //          <td>{datavar.New_steem_per_day}</td>
+          //          <td>{datavar.Inflation} <span>%</span></td>                     
+          //          {/* Render more table cells for each property */}
+          //        </tr>
+            
+          //    </tbody>
+          //  </table>
+          //  </div>
+          //   <div>
+          //   <table className='tableGeneric' >
+          //    <thead>
+          //      <tr>
+          //        <th>Vesting Fund</th>
+          //        <th>Vesting Shares</th>
+          //        <th>Steems Per mVest</th>
+          //        <th>Print Rate</th>
+          //        <th>Interest Rate</th>
+          //        {/* Add more table headers for each property */}
+          //      </tr>
+          //    </thead>
+          //    <tbody>
+              
+          //        <tr >                 
+          //          <td>{datavar.VFSteem}</td>
+          //          <td>{datavar.VFShare}</td>
+          //          <td>{(parseFloat(datavar.VFShare)/ parseFloat(datavar.VFSteem)).toFixed(3)}</td>
+          //          <td>{datavar.Printrate}</td>
+          //          <td>{datavar.Interestrate}</td>    
+          //          {/* Render more table cells for each property */}
+          //        </tr>
+            
+          //    </tbody>
+          //  </table>
+              
+          //   </div>
+           
+          // </div>
            }
         </div>
         
