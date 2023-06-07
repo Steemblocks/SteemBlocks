@@ -19,7 +19,7 @@ function App() {
   const [Blockdetails, setBlockdetails] = useState([])
   const [Blockdetaildata , setBlockdetaildata] = useState()
   const [Searchtext , setSearchtext] = useState("")
-  const [Searcheditem, setSearcheditem] = useState("")
+  const [Searcheditem, setSearcheditem] = useState()
   const [type,settype]= useState('')
   const [ShowSearch ,setShowSearch] = useState(false)
   const [flag ,setflag] = useState(false)
@@ -30,6 +30,7 @@ function App() {
   const [withnesspage,setwithnesspage] =useState(false)
   const [Searchfailedflag,setsearchfailedflag] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
+  const [showmobilenav,setshowmobilenav] = useState(false)
    
   useEffect(() => {
       const fetchBlockNumber = () => {       
@@ -115,9 +116,7 @@ function App() {
         if(!data.result){
           setSearcheditem(null);
         }else{
-          setSearcheditem(data.result);
-          
-
+          setSearcheditem(data.result);    
         }
         setShowSearch(true); 
         
@@ -149,14 +148,15 @@ function App() {
         // setSearcheditem(BlockObject);
          console.log(Searcheditem,BlockObject)
          //setShowSearch(true); 
-         if(!data){
-          setsearchfailedflag(true)
+         if(!data.result){
+          setSearcheditem(null);
         }else{
           BlockObject.Number = ac_search
           setSearcheditem(BlockObject);
-          setShowSearch(true); 
+          
 
         }
+        setShowSearch(true); 
  
        })    
        .catch(e => console.error(e));
@@ -176,16 +176,13 @@ function App() {
           Result: " ",                      
         };
          TransactionObject.Result = data.result
-        // setSearcheditem(TransactionObject);
-        // console.log(Searcheditem,TransactionObject)
-        // setShowSearch(true); 
-        if(!data){
-          setsearchfailedflag(true)
+        if(!data.result){
+          setSearcheditem(null);
         }else{
           setSearcheditem(TransactionObject);
-          setShowSearch(true); 
-
+          
         }
+        setShowSearch(true); 
  
        })    
        .catch(e => console.error(e));
@@ -194,12 +191,6 @@ function App() {
       
 
      }
-
-    //  if(Searcheditem === ''){
-    //   setShowSearch(false)
-    //   setsearchfailedflag(true)
-
-    //  }
        
   };
 
@@ -210,6 +201,7 @@ function App() {
     setcommunitypage(false)
     sethistorypage(false)
     setwithnesspage(false)
+    setshowmobilenav(false)
 
   }
 
@@ -219,6 +211,7 @@ function App() {
     setcommunitypage(false)
     sethistorypage(false)
     setwithnesspage(false)
+    setshowmobilenav(false)
   }
   const handlecommunity =  () => {
     sethomepage(false)
@@ -226,6 +219,7 @@ function App() {
     setcommunitypage(true)
     sethistorypage(false)
     setwithnesspage(false)
+    setshowmobilenav(false)
   }
   const handlehistory =  () => {
     sethomepage(false)
@@ -233,6 +227,7 @@ function App() {
     setcommunitypage(false)
     sethistorypage(true)
     setwithnesspage(false)
+    setshowmobilenav(false)
   }
 
   const handlewitness =  () => {
@@ -241,6 +236,11 @@ function App() {
     setcommunitypage(false)
     sethistorypage(false)
     setwithnesspage(true)
+    setshowmobilenav(false)
+  }
+
+  const handleMobileNav = ()=>{
+    setshowmobilenav(!showmobilenav)
   }
 
 
@@ -249,7 +249,7 @@ function App() {
     // Simulate a delay before hiding the loading page
     setTimeout(() => {
       setIsLoading(false);
-    }, 2500);
+    }, 3500);
   }, []);
     
   return (
@@ -257,7 +257,12 @@ function App() {
     {isLoading? <LoadingPage/>:
     <div>
     <header className='header'>
-      <nav className="top-nav">
+    
+
+    <nav className="top-nav">
+  <div className="mobile-drawer">
+   <button  className='nav-btn' onClick={handleMobileNav}><div className='dashcontainer'><div className='dash'></div><div className='dash'></div><div className='dash'></div></div></button>
+  </div>
   <div className="nav-left">
     <button className='nav-btn' onClick={handlehome}>Home</button>
     <button className='nav-btn' onClick={handleabout}>About</button>
@@ -265,6 +270,17 @@ function App() {
     <button className='nav-btn' onClick={handlehistory}>Content History</button>
     <button className='nav-btn' onClick={handlewitness}>Witness List</button>
   </div>
+
+  { showmobilenav &&
+  <div className='mobile-nav-drawer'>
+  <button className='nav-btn' onClick={handlehome}>Home</button>
+  <button className='nav-btn' onClick={handleabout}>About</button>
+  <button className='nav-btn' onClick={handlecommunity}>Community Data</button>
+  <button className='nav-btn' onClick={handlehistory}>Content History</button>
+  <button className='nav-btn' onClick={handlewitness}>Witness List</button>
+</div>
+
+  }
   {!aboutpage && !communitypage && !historypage && !withnesspage &&
   <div class="nav-right">
   <TextField
@@ -295,7 +311,6 @@ function App() {
       
      {ShowSearch && !Searcheditem &&
       <div><h2>No search data available to show <br /> <b>Do check you have given correct input</b></h2></div>
-
       }
       {ShowSearch && type === "account" && Searcheditem &&
          <AccountTable Account_details= {Searcheditem}></AccountTable>

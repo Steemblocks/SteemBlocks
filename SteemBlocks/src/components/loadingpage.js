@@ -7,8 +7,7 @@ const LoadingPage = () => {
   return (
     <div className="loading-container">
       <div className="loading-image">
-        <img src={imageIcon} alt="Loading" />
-        
+        <img src={imageIcon} alt="Loading" />       
       </div>
       <div className='loadtext'>
       <span>SteemBlocks developed by @dhaka.witness</span>

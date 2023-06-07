@@ -7,6 +7,9 @@
      height: 100vh; /* Adjust this to fit your specific layout requirements */
      overflow: auto;
   }
+  .descriptionpage{
+    margin-top: 30px;
+  }
   
   .table td, .table th {
     border: 1px solid #ddd;

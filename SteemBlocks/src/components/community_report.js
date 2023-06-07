@@ -41,7 +41,7 @@ const Communitypage = () => {
     
   return (
     <div className='communityclass' >
-      <div><h2>Hello jadkskfhjandkmsvf kcaksvf</h2></div>
+      <div className='descriptionpage'><h2>Hello jadkskfhjandkmsvf kcaksvf</h2></div>
         <div className='com-container' >
         <TextField
           id="outlined-basic"
