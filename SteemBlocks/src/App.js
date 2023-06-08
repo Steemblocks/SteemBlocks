@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import BlockTable from './components/block_table';
 import TransactionTable from './components/transaction_table';
 import TextField from "@mui/material/TextField";
@@ -14,6 +14,7 @@ import TransactionSearchTable from './components/transaction_search';
 import Steemstat from './components/steemstat';
 import WitnessScedule from './components/withnesss_scedule';
 import LoadingPage from './components/loadingpage';
+import { formHelperTextClasses } from '@mui/material';
 function App() {
   const [BlockNumbers, setBlocknumbers] = useState([])
   const [Blockdetails, setBlockdetails] = useState([])
@@ -31,26 +32,40 @@ function App() {
   const [Searchfailedflag,setsearchfailedflag] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
   const [showmobilenav,setshowmobilenav] = useState(false)
-   
+  const [Blkfetchvalue,setBlkfetchvalue] = useState(false)
+  const GlobalValueofBlk = useRef(0);
   useEffect(() => {
+    //var GlobalValueofBlk = 0
       const fetchBlockNumber = () => {       
         fetch("https://sds1.steemworld.org/blocks_api/getLastIrreversibleBlockNum")
           .then(response => {
             return response.json()
           })
           .then(data => {
+            if(Blkfetchvalue){
+            }else{
+              setBlkfetchvalue(true)
+              GlobalValueofBlk.current = data.result
+            }
+
+            console.log(GlobalValueofBlk)
             const BlockObject = {
-              Number: data.result,
+              Number: GlobalValueofBlk.current,
               Withness: " ",
               Transactions: " ",
               Timestamp: " ",             
             };
-            fetch(`https://sds1.steemworld.org/blocks_api/getBlock/${data.result}`)
+            fetch(`https://sds1.steemworld.org/blocks_api/getBlock/${GlobalValueofBlk.current - 25}`)
             .then(response => {
              return response.json()             
             }).then(data =>{
+              if(data.code === -1){ 
+              }else{
+                GlobalValueofBlk.current++
+              }
+              console.log(data)
               setBlockdetaildata(data)
-              BlockObject.Timestamp =data.result.timestamp
+              BlockObject.Timestamp = data.result.timestamp
               BlockObject.Withness = data.result.witness
               BlockObject.Transactions = data.result.transactions
 
@@ -58,42 +73,40 @@ function App() {
             .catch(e => console.error(e));
            
                  
-          if (BlockNumbers.length >= 20)
-          {
-            const newblcknum = BlockNumbers.slice(0, -1);
-            setBlocknumbers(newblcknum);            
-          }
+          // if (BlockNumbers.length >= 20)
+          // {
+          //   const newblcknum = BlockNumbers.slice(0, -1);
+          //   setBlocknumbers(newblcknum);            
+          // }
 
           if (Blockdetails.length >= 20)
           {
             const newblcdetail = Blockdetails.slice(0, -1);
             setBlockdetails(newblcdetail);           
           }
-            
-          if (!BlockNumbers.includes(BlockObject.Number)) { 
             let new1 = [BlockObject]
             new1= new1.concat(Blockdetails)
             setBlockdetails(new1)
 
-            let new2 = [BlockObject.Number]
-            new2 = new2.concat(BlockNumbers)
-            setBlocknumbers(new2)
+            // let new2 = [BlockObject.Number]
+            // new2 = new2.concat(BlockNumbers)
+            // setBlocknumbers(new2)
              console.log(Blockdetaildata.result.transactions)
             // console.log(Blocktransactions) 
             //console.log(Blockdetails)          
-          }
+          
             setflag(true)     
           })
           .catch(e => console.error(e));
       }
-      const fetchDataInterval = setInterval(fetchBlockNumber, 500); 
+      const fetchDataInterval = setInterval(fetchBlockNumber, 3000); 
 
     return () => {
       clearInterval(fetchDataInterval); 
     };  
     
     
-  }, [Blockdetails,BlockNumbers,Blockdetaildata])
+  }, [Blockdetails,Blockdetaildata,Blkfetchvalue])
 
 
   let inputHandler = (e) => {
@@ -249,7 +262,7 @@ function App() {
     // Simulate a delay before hiding the loading page
     setTimeout(() => {
       setIsLoading(false);
-    }, 3500);
+    }, 3000);
   }, []);
     
   return (
@@ -326,7 +339,7 @@ function App() {
      </div>
   </div>
     <div className='blockandtransaction'>
-      <div>
+      <div className='Mstat'>
       {flag &&
       <Steemstat></Steemstat>}
       </div>
@@ -345,7 +358,7 @@ function App() {
 
     <div className='Block-table'>
    { flag && 
-    <div className='Block-Withness'>
+    <div className='Block-Withnessscedule'>
       <WitnessScedule className='component'></WitnessScedule>
     </div>
     

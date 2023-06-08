@@ -2,7 +2,7 @@
 .tableGeneric {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 8px;
     width: 100%;
     overflow: hidden;
   }
@@ -37,6 +37,10 @@
       display: flex;
       width: 100%;
       overflow-x: scroll;
+    }
+    .head{
+      float: left;
+      margin-left: 60px;
     }
     
   }

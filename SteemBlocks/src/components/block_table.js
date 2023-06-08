@@ -1,10 +1,13 @@
 import React from 'react';
 import '../table.css'
 const BlockTable = ({ Block_details }) => {
+  if(Block_details.length >20){
+    Block_details =Block_details.slice(0,20)
+  }
     
   return (
    <div >
-    <h2>Latest Block Details</h2>
+    <h2 className='head'>Latest Block Details</h2>
      <table className='tableGeneric' >
       <thead>
         <tr>

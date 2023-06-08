@@ -112,6 +112,12 @@ input{
   text-align: center; 
   
 }
+.Block-Withnessscedule{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  text-align: center;
+}
 
 .component{
   margin-left: 20px;
@@ -142,8 +148,17 @@ input{
 
   .Block-Withness{
     display: flex;
-    flex-direction: column;  
-    text-align: center;    
+    justify-content: flex-start;
+    margin-left: 90px; 
+    text-align: center;
+    overflow: auto;   
+  }
+  .Block-Withnessscedule{
+    display: flex;
+    justify-content: flex-start;
+   
+    text-align: center;
+    overflow: auto; 
   }
 
   .Transactions-table{
@@ -168,13 +183,15 @@ input{
     overflow: auto;
   }
   .blockandtransaction{
-    scale: 80%;
     align-items: center;
     text-align: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
 
   .nav-right{
