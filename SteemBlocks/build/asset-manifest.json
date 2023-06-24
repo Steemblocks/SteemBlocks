@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e8c48385.css",
+    "main.js": "/static/js/main.1722ef97.js",
+    "static/js/787.6e9e6179.chunk.js": "/static/js/787.6e9e6179.chunk.js",
+    "static/media/steem_logo.png": "/static/media/steem_logo.65224ba7f16326a462d2.png",
+    "index.html": "/index.html",
+    "main.e8c48385.css.map": "/static/css/main.e8c48385.css.map",
+    "main.1722ef97.js.map": "/static/js/main.1722ef97.js.map",
+    "787.6e9e6179.chunk.js.map": "/static/js/787.6e9e6179.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8c48385.css",
+    "static/js/main.1722ef97.js"
+  ]
+}
