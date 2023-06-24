@@ -40,11 +40,11 @@ function WitnessScedule() {
     <div>
       {data &&
       <div>
-      <h2>Sceduled Witness</h2>
+      <h2 className='head'>Scheduled Witness</h2>
        <table className='tableGeneric' >
         <thead>
           <tr>
-            <th>Witness Scedule List</th>
+            <th>Witness Schedule List</th>
             
             {/* Add more table headers for each property */}
           </tr>

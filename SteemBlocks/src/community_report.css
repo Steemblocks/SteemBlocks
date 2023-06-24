@@ -50,14 +50,12 @@
   }
 
   .trans-header{
-    text-align: left;
+    text-align: center;
   }
   input{
     height: 2px !important;
   }
   
-  
-
   .btn-com{
     background-color: #4CAF50; /* Green */
   border: none;

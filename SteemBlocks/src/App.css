@@ -140,6 +140,9 @@ input{
 }
 
 @media (max-width: 400px) {
+  .Mstat{
+    margin-left: 50px;
+  }
   .top-nav{
     display: flex;
     flex-direction: column;

@@ -52,7 +52,7 @@ const Contenthistory = () => {
    
    
     <div className='communityclass' >
-    <div className='descriptionpage'><h2>Hello <br /> jadkskfhjandkmsvf <br /> kcaksvf</h2></div>
+    <div className='descriptionpage'><h2>Content History</h2></div>
         <div className='com-container' >
         <TextField
           id="outlined-basic"

@@ -31,7 +31,7 @@ const Witnesstable = () => {
             {flag &&
             <div>
             <h2>Witness List</h2>
-             <table className='tableGeneric' >
+             <table className='tableGenericwithness' >
               <thead>
                 <tr>
                   <th>Rank</th>

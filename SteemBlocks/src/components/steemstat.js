@@ -75,7 +75,7 @@ const Witnesstable = () => {
         <div>
           <h2>Market Stats</h2>
           {flag &&
-          <div>
+          <div >
             <Card title='Current Supply' content={[datavar.CurrentSuppy,datavar.Current_Sbd_Supply]}></Card>
             <Card title='Virtual Steem' content={['virtual ' + datavar.Vsupply]}></Card>
             <Card title='Inflation' content={['Annual Rate ' + datavar.Inflation, 'Steems Per day :' + datavar.New_steem_per_day]}></Card>
