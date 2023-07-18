@@ -16,8 +16,8 @@ const Aboutpage = () => {
       <p><a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a> is a dedicated team of blockchain enthusiasts based in Dhaka, Bangladesh. With a deep understanding of the potential of blockchain technology, we have taken on the responsibility of running the following nodes:
         <ul>
           <li>Witness Node (<a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a>)</li>
-          <li>Seed Node (seed.steemblocks.com:2001)</li>
-          <li>Full Node (rpc.steemblocks.net)</li>
+          <li>Seed Node (seed.dhakawitness.com:2001)</li>
+          <li>RPC Node (<a href="https://api.dhakawitness.com" target='_blank'>api.dhakawitness.com)</li>
         </ul>
       </p>
     </section>
