@@ -17,7 +17,7 @@ const Aboutpage = () => {
         <ul>
           <li>Witness Node (<a href="https://steemit.com/@dhaka.witness" target='_blank'>@Dhaka.witness</a>)</li>
           <li>Seed Node (seed.dhakawitness.com:2001)</li>
-          <li>RPC Node (<a href="https://api.dhakawitness.com" target='_blank'>api.dhakawitness.com)</li>
+          <li>RPC Node (<a href="https://api.dhakawitness.com" target='_blank'>api.dhakawitness.com</a>)</li>
         </ul>
       </p>
     </section>
