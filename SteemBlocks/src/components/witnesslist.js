@@ -44,7 +44,7 @@ const Witnesstable = () => {
                   <th>Price feed</th>                
                   <th>Last Confirmed Block</th>
                   <th>Account Subsidies</th>
-                  <th>Url</th>
+                  <th>witness thread</th>
                   {/* Add more table headers for each property */}
                 </tr>
               </thead>
