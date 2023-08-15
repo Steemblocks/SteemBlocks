@@ -1,5 +1,10 @@
 //import logo from './logo.svg';
 import './App.css';
+import {BiHomeAlt2} from "react-icons/bi";
+import {AiOutlineQuestionCircle} from "react-icons/ai";
+import {MdOutlineHistory} from "react-icons/md";
+import {FaRegRectangleList} from "react-icons/fa6";
+import {ImTable2} from "react-icons/im";
 import React, { useEffect, useState,useRef } from 'react'
 import BlockTable from './components/block_table';
 import TransactionTable from './components/transaction_table';
@@ -286,11 +291,11 @@ function App() {
 
   { showmobilenav &&
   <div className='mobile-nav-drawer'>
-  <button className='nav-btn' onClick={handlehome}>Home</button>
-  <button className='nav-btn' onClick={handleabout}>About</button>
-  <button className='nav-btn' onClick={handlecommunity}>Community Data</button>
-  <button className='nav-btn' onClick={handlehistory}>Content History</button>
-  <button className='nav-btn' onClick={handlewitness}>Witness List</button>
+  <button className='nav-btn' onClick={handlehome}><BiHomeAlt2/> <span>Home</span></button>
+  <button className='nav-btn' onClick={handleabout}><AiOutlineQuestionCircle/><span>About</span></button>
+  <button className='nav-btn' onClick={handlecommunity}><ImTable2/><span>Community Data</span></button>
+  <button className='nav-btn' onClick={handlehistory}><MdOutlineHistory/><span>Content History</span></button>
+  <button className='nav-btn' onClick={handlewitness}><FaRegRectangleList/><span>Witness List</span></button>
 </div>
 
   }
