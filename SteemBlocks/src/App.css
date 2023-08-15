@@ -1,4 +1,3 @@
-
 body{
   min-height: 100vh;
   padding-left: 5px;
@@ -139,10 +138,19 @@ input{
   
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
   .Mstat{
-    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+   /* margin-left: 50px; */
   }
+
+  .stat-cards{
+    
+  }
+
   .top-nav{
     display: flex;
     flex-direction: column;
@@ -211,19 +219,34 @@ input{
     text-decoration: none;
   }
   .mobile-nav-drawer{
+    margin-left: auto;
+    background-color: #04AA6D;
+    min-height: 30vh !important;
+    width: 70%;
+    color: white;
     display: flex;
+    flex-direction: column;
+    align-items: start ;
+    justify-content: space-evenly;
     box-shadow: 5px black;
     border-radius: 10px;
-    width: 100%;
-    flex-direction: column;
-    align-items: end;
   }
   .nav-btn{
-    background: none;
-    background-color:#4CAF50 ;
+    width: 100%;
+    margin-left: 6px;
     border-radius: 15px;
     font-size: large;
     border: #282c34;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+
+    & span{
+      margin-left: 12px;
+    }
   }
   .dash {
     width: 20px;
@@ -238,6 +261,7 @@ input{
     background:  #4CAF50;
     border: 2px thin black;
     border-radius: 5px;
+    color: white;
   }
 
   
