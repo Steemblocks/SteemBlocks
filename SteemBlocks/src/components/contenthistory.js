@@ -86,12 +86,8 @@ const Contenthistory = () => {
           <thead>
             <tr>
               <th>Serial</th>
-              <th>Metadata</th>
               <th>Title</th>
-              <th>Body</th>
-              
-              
-              
+              <th>Body</th> 
               {/* Add more table headers for each property */}
             </tr>
           </thead>
@@ -99,11 +95,8 @@ const Contenthistory = () => {
           {item.map((object,index) => ( 
               <tr key={index}>
                 <td>{index}</td>
-                <td>{object[1]}</td>
                 <td>{object[2]}</td>
                 <td>{object[3]}</td>
-                
-    
                 {/* Render more table cells for each property */}
               </tr>
                ))} 
